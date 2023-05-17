@@ -42,7 +42,7 @@ def delete(id):
         'id':id
     }
     Ticket.destroy(data)
-    return redirect('/dashboard')
+    return redirect('/tickets')
 
 
 @app.route('/register/ticket/<int:id>', methods=['POST'])
@@ -56,7 +56,7 @@ def register_show(id):
         "description": request.form['description']
     }
     Ticket.save(data)
-    return redirect('/dashboard')
+    return redirect('/tickets')
 
 @app.route('/update/ticket/<int:id>', methods=['POST'])
 def update_show(id):
@@ -69,4 +69,13 @@ def update_show(id):
         "description": request.form['description']
     }
     Ticket.update(data)
-    return redirect('/dashboard')
+    return redirect('/tickets')
+
+@app.route('/tickets')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data ={
+        'id': session['user_id']
+    }
+    return render_template('show_tickets.html', user = User.get_by_id(data) , tickets = Ticket.get_all())

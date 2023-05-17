@@ -15,7 +15,7 @@ def index():
 def register():
     if not User.validate_register(request.form):
         return redirect('/')
-    data ={ 
+    data ={
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
@@ -36,19 +36,16 @@ def login():
         flash("Invalid Password","login")
         return redirect('/')
     session['user_id'] = user.id
-    return redirect('/dashboard')
-
-@app.route('/dashboard')
-def dashboard():
-    if 'user_id' not in session:
-        return redirect('/logout')
-    data ={
-        'id': session['user_id']
-    }
-    return render_template('show_tickets.html', user = User.get_by_id(data) , tickets = Ticket.get_all())
+    return redirect('/main')
 
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
+@app.route('/main')
+def display_main():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return render_template('main_page.html')
