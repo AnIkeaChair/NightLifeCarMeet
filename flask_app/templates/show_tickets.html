@@ -11,7 +11,9 @@
     <div class="col-6 mx-auto">
         <h1 class="text-center">Welcome, {{user.first_name}}!</h1>
         <div>
-            <a href="/ticket/new" class="mx-2">Create Ticket</a>
+            {% if user.id == 1 %}
+                <a href="/ticket/new" class="mx-2">Create Ticket</a>
+            {% endif %}
             <a href="/logout" class="mx-2">Logout</a>
             <a href="/main" class="mx-2">Back to Main</a>
         </div>

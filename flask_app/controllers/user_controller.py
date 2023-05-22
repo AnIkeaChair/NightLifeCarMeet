@@ -23,7 +23,7 @@ def register():
     }
     id = User.save(data)
     session['user_id'] = id
-    return redirect('/dashboard')
+    return redirect('/main')
 
 
 @app.route('/login',methods=['POST'])
