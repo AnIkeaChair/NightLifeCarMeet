@@ -72,8 +72,12 @@ class User:
         if len(user['password']) < 8:
             flash("Password must be at least 8 characters.","register")
             is_valid = False
+        if len(user['confirm_password']) < 1:
+            flash("You must confirm your password.","register")
+            is_valid = False
         if user['password'] != user['confirm_password']:
             flash("Passwords don't match.","register")
+            is_valid = False
         for i in range(len(user['password'])):
             if list(user['password'])[i].isupper() == True:
                 uppers.append(list(user['password'])[i])

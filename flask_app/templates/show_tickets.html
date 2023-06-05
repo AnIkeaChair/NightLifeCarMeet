@@ -32,7 +32,7 @@
                 <tr>
                     <td>{{t.title}}</td>
                     <td><a href="/ticket/show/{{ t.id }}">Ticket Info</a>
-                    {% if user.id == t.user_id %}
+                    {% if user.id == 1 %}
                         <a href="/ticket/edit/{{ t.id }}">  |  Edit</a><a href="/ticket/destroy/{{ t.id }}">  |  Delete</a></td>
                     {% endif %}
                 </tr>

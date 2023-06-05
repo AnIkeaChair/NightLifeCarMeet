@@ -7,7 +7,7 @@ bcrypt = Bcrypt(app)
 
 
 @app.route('/ticket/new')
-def index_recipe():
+def index_ticket():
     if 'user_id' not in session:
         return redirect('/logout')
     data ={
@@ -17,7 +17,7 @@ def index_recipe():
 
 
 @app.route('/ticket/show/<int:id>')
-def index_one_recipe(id):
+def index_one_ticket(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data ={
@@ -27,7 +27,7 @@ def index_one_recipe(id):
 
 
 @app.route('/ticket/edit/<int:id>')
-def show_edit_recipe(id):
+def show_edit_ticket(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data ={
@@ -46,7 +46,7 @@ def delete(id):
 
 
 @app.route('/register/ticket/<int:id>', methods=['POST'])
-def register_show(id):
+def register_ticket(id):
     print(request.form)
     if not Ticket.validate_ticket(request.form):
         return redirect(f"/ticket/new")
@@ -59,14 +59,15 @@ def register_show(id):
     return redirect('/tickets')
 
 @app.route('/update/ticket/<int:id>', methods=['POST'])
-def update_show(id):
+def update_ticket(id):
     print(request.form)
     if not Ticket.validate_update_ticket(request.form):
         return redirect(f"/ticket/edit/{id}")
     data ={
         "user_id": request.form['user_id'],
         "title": request.form['title'],
-        "description": request.form['description']
+        "description": request.form['description'],
+        "id": {id}
     }
     Ticket.update(data)
     return redirect('/tickets')

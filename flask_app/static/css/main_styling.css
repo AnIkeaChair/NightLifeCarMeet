@@ -41,6 +41,26 @@
     justify-content: space-between;
 }
 
+.profile-div{
+    
+}
+
+.helmet-div{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    right: -125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.helmet-icon{
+    width: 50px;
+}
+
 .header-bottom{
     display: flex;
 }
