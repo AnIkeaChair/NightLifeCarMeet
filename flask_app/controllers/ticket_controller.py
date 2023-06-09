@@ -73,7 +73,7 @@ def update_ticket(id):
     return redirect('/tickets')
 
 @app.route('/tickets')
-def dashboard():
+def tickets():
     if 'user_id' not in session:
         return redirect('/logout')
     data ={

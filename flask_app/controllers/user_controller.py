@@ -44,8 +44,28 @@ def logout():
     session.clear()
     return redirect('/')
 
+
 @app.route('/main')
 def display_main():
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('main_page.html')
+    data ={
+        'id': session['user_id']
+    }
+    return render_template('main_page.html', user = User.get_by_id (data))
+
+
+@app.route('/user/profile/<int:id>')
+def show_user_profile(id):
+    return render_template('/show_user_profile.html', user = User.get_by_id ({'id':id}))
+
+
+@app.route('/user/edit/<int:id>')
+def show_edit_user(id):
+    return render_template('/show_edit_user.html', user = User.get_by_id ({'id':id}))
+
+
+@app.route('/user/update', methods=['POST'])
+def update():
+    User.update(request.form)
+    return redirect('/user/profile/<int:id>')

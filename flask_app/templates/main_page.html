@@ -18,10 +18,14 @@
             <div class="header">
                 <div class="profile-div">
                     <div class="helmet-div">
-                        <img src="{{ url_for('static', filename='/img/racing-helmet-icon.png') }}" alt="helmet icon" class="helmet-icon">
-                        <div class="dropdown-content">
-                            <a href="">Profile</a>
-                            <a href="">Logout</a>
+                        <div class="dropdown">
+                            <span>
+                                <img src="{{ url_for('static', filename='/img/racing-helmet-icon.png') }}" alt="helmet icon" class="helmet-icon">
+                            </span>
+                            <div class="dropdown-content">
+                                <a class="top-nav-link" href="/user/profile/{{user.id}}">Profile</a>
+                                <a class="top-nav-link" href="/logout">Logout</a>
+                            </div>
                         </div>
                     </div>
                 </div>
